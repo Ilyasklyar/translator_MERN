@@ -1,0 +1,5 @@
+{
+    "port": 5000,
+    "jwtSecret": "Ilya mern app",
+    "mongoUri": "mongodb+srv://ilya:qwe123@cluster0-rhu5r.azure.mongodb.net/app?retryWrites=true&w=majority"
+}
