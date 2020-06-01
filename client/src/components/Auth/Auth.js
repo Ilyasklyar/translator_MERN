@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { userLogin, userRegister } from '../../redux/actions/auth'
+import { Message } from '../Message/Message'
 
 const Auth = props => {
+  console.log(props)
   const [form, setForm] = useState({ email: '', password: '' })
 
   const onChangeHandler = event => {
@@ -47,6 +49,9 @@ const Auth = props => {
           <label htmlFor="email">Email</label>
         </div>
       </div>
+      { props.message ?
+        <Message message={props.message} />
+        : null }
       <div className="row">
         <div className="col s6 center">
           <div className="wraper-btn">
@@ -60,6 +65,12 @@ const Auth = props => {
   )
 }
 
+const mapStateToProps = state => {
+  return {
+    message: state.auth.message
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     login: form => dispatch(userLogin(form)),
@@ -67,4 +78,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, mapDispatchToProps)(Auth)

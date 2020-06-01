@@ -1,4 +1,4 @@
-export const userLoginSuccess = (token,userId) => {
+export const userLoginSuccess = (token, userId) => {
     return {
         type: "AUTH_SUCCESS",
         token,
@@ -6,7 +6,7 @@ export const userLoginSuccess = (token,userId) => {
     }
 }
 
-export const userRegisterSuccess = (token,userId) => {
+export const userRegisterSuccess = (token, userId) => {
     return {
         type: "USER_CREATE_SUCCESS",
         token,
@@ -14,37 +14,51 @@ export const userRegisterSuccess = (token,userId) => {
     }
 }
 
-export const userLogin =  form => {
-    return (dispatch) => {
-        fetch('/api/auth/login',
-        {
-            method: 'POST',
-            body: JSON.stringify({ ...form }),
-            headers: { 'Content-Type': 'application/json' }
-        } )
-        .then(response => response.json()) 
-        .then(data => {
-            localStorage.setItem('token', data.token)
-            localStorage.setItem('userId', data.userId)
-           dispatch(userLoginSuccess(data.token,data.userId ))
-        })
+export const userError = message => {
+    return {
+        type: "USER_ERROR",
+        message
     }
 }
 
-export const userRegister =  form => {
+
+export const userLogin = form => {
+    return (dispatch) => {
+        fetch('/api/auth/login',
+            {
+                method: 'POST',
+                body: JSON.stringify({ ...form }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    return dispatch(userError(data.message))
+                }
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('userId', data.userId)
+                dispatch(userLoginSuccess(data.token, data.userId))
+            })
+    }
+}
+
+export const userRegister = form => {
     return (dispatch) => {
         fetch('/api/auth/register',
-        {
-            method: 'POST',
-            body: JSON.stringify({ ...form }),
-            headers: { 'Content-Type': 'application/json' }
-        } )
-        .then(response => response.json()) 
-        .then(data => {
-            localStorage.setItem('token', data.token)
-            localStorage.setItem('userId', data.userId)
-           dispatch(userLoginSuccess(data.token,data.userId ))
-        })
+            {
+                method: 'POST',
+                body: JSON.stringify({ ...form }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message) {
+                    return dispatch(userError(data.message))
+                }
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('userId', data.userId)
+                dispatch(userLoginSuccess(data.token, data.userId))
+            })
     }
 }
 
@@ -61,10 +75,10 @@ export const autoLogin = () => {
     return dispatch => {
         const token = localStorage.getItem('token')
         const userId = localStorage.getItem('userId')
-        if(!token) {
+        if (!token) {
             dispatch(logoutUser())
-        } else {     
-                dispatch(userLoginSuccess(token, userId))
-            }
+        } else {
+            dispatch(userLoginSuccess(token, userId))
+        }
     }
 }

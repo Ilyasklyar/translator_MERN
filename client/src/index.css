@@ -1,6 +1,6 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
-.wraper-btn{
+.wraper-btn {
     display: flex;
     justify-content: space-around;
 }
@@ -15,14 +15,22 @@
     padding: 10px 0;
     border-bottom: 1px solid #ccc;
 }
+
 .wrap--list-item span {
     width: 45%
 }
 
 .center {
-    margin: 0 auto!important;
-    float: none!important;
+    margin: 0 auto !important;
+    float: none !important;
 }
+
 .login {
     margin-top: 50px;
+}
+
+.message-error {
+    color: #ee6e73;
+    font-weight: 700;
+    text-align: center;
 }
