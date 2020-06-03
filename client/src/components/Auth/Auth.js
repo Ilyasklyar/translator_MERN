@@ -4,7 +4,7 @@ import { userLogin, userRegister } from '../../redux/actions/auth'
 import { Message } from '../Message/Message'
 
 const Auth = props => {
-  console.log(props)
+
   const [form, setForm] = useState({ email: '', password: '' })
 
   const onChangeHandler = event => {

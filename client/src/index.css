@@ -34,3 +34,23 @@
     font-weight: 700;
     text-align: center;
 }
+select {
+    display: block;
+}
+
+.modal {
+    display: block;
+    top: 100px;
+    z-index: 999;
+}
+.modal ul { 
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.modal ul li { 
+    margin: 10px;
+}
+.modal ul li span { 
+    cursor: pointer;
+}

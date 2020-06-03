@@ -12,7 +12,6 @@ const store = createStore(
   rootReducer,
   applyMiddleware(thunk)
   )
-console.log(store)
 
 ReactDOM.render(
   <React.StrictMode>

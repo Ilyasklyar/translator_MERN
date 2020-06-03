@@ -12,7 +12,7 @@ export const Navbar = props => {
   return (
     <nav>
       <div className="nav-wrapper" style={{ padding: '0 2rem' }}>
-        <span className="brand-logo">Logo</span>
+        <span className="brand-logo">Translator</span>
         {
           props.isAuthenticated
             ?
