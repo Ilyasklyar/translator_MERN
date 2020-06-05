@@ -9,9 +9,10 @@ import { clearPageVoc } from './redux/actions/vocabulary';
 
 function App(props) {
   
+  const autoLoginEff = props.autoLogin
   useEffect(() => {
-    props.autoLogin()
-  }, [])
+    autoLoginEff()
+  }, [autoLoginEff])
 
   const routes = useRoutes(props.isAuthenticated)
 

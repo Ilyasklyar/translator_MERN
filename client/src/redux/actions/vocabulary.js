@@ -9,7 +9,7 @@ export const getWordVocabularySuccess = data => {
 
 export const getWordVocabulary = (token, pageNumb, limit) => {
     return (dispatch) => {
-console.log('pageNumb', pageNumb)
+
         fetch(`/api/vocabulary?page=${pageNumb}&limit=${limit}`,
         {
             method: 'GET',
@@ -27,7 +27,6 @@ console.log('pageNumb', pageNumb)
 
 export const deleteListItem = (id, token, pageNumb, limit) => {
 
-    console.log(token)
     return (dispatch) => {
         fetch('/api/vocabulary/delete',
         {

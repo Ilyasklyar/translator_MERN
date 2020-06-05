@@ -6,11 +6,15 @@ import { getWordVocabulary, deleteListItem } from '../../redux/actions/vocabular
 
 const TranlateList = props => {
 
+    let getTextEff = props.getText
+    let tokenEff = props.token
+    let pageEff = props.page
+    let limitEff = props.limit
     useEffect(
         () => {
-            props.getText(props.token, props.page, props.limit)
+            getTextEff(tokenEff, pageEff, limitEff)
         },
-        []
+        [getTextEff,tokenEff, pageEff, limitEff]
     );
 
     const onChangePage = (pageNumb) => {
