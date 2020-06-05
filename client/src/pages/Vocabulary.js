@@ -4,7 +4,7 @@ import TranlateList from '../components/TranslateList/TranslateList'
 export const Vocabulary = () => {
     return (
         <div>
-            <h1>Vocabulary Page</h1>
+            <h1>Словарь</h1>
             <TranlateList />
         </div>
     )

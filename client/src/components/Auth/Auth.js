@@ -55,8 +55,8 @@ const Auth = props => {
       <div className="row">
         <div className="col s6 center">
           <div className="wraper-btn">
-            <button className="btn waves-effect waves-light" type="submit" name="action" onClick={onClickLogin} >Войти</button>
-            <button className="btn waves-effect waves-light" type="submit" name="action" onClick={onClickRegister}>Зарегистрироваться</button>
+            <button className="btn-large waves-effect waves-light" type="submit" name="action" onClick={onClickLogin} >Войти</button>
+            <button className="btn-large waves-effect waves-light" type="submit" name="action" onClick={onClickRegister}>Зарегистрироваться</button>
           </div>
         </div>
       </div>

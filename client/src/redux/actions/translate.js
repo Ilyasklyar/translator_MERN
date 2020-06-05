@@ -168,11 +168,18 @@ export const setLanguageFrom = (languageFrom, languageFromKey) => {
         languageFromKey
     }
 }
+
 export const setLanguageTo = (languageTo, languageToKey) => {
     return {
         type: "SET_LANGUAGE_TO",
         languageTo,
         languageToKey
+    }
+}
+
+export const clearMessage = () => {
+    return {
+        type: "CLEAR_MESSAGE",
     }
 }
 

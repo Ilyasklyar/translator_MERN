@@ -6,6 +6,7 @@ export const Navbar = props => {
 
   const onClickLogout = event => {
     event.preventDefault()
+    props.clearPage()
     props.logoutUser()
   }
 
@@ -19,7 +20,7 @@ export const Navbar = props => {
             <ul id="nav-mobile" className="right hide-on-med-and-down">
               <li><NavLink to='/'>Перевести</NavLink></li>
               <li><NavLink to='/vocabulary'>Мой словарь</NavLink></li>
-              <li><NavLink to='/about'>Про нас</NavLink></li>
+              <li><NavLink to='/about'>O нас</NavLink></li>
               <li><a href='/' onClick={onClickLogout}>Выйти</a></li>
             </ul>
             : null

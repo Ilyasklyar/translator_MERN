@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal, setLanguageFrom, setLanguageTo } from '../../redux/actions/translate'
+import { wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal, setLanguageFrom, setLanguageTo, clearMessage } from '../../redux/actions/translate'
 import { ModalLang } from '../ModalLang/ModalLang'
+import { Message } from '../Message/Message'
 
 
 
@@ -29,6 +30,9 @@ const Translate = props => {
     const onClickAdd = (event) => {
         event.preventDefault()
         props.addToVocabulary(Object.values(text).join(''), ...props.wordTranslate, props.token)
+        setTimeout (() => {
+            props.clearMessage()
+        },5000)
     }
 
     let languageToSet
@@ -60,7 +64,7 @@ const Translate = props => {
                                     value={text.text}
                                     onChange={onChangeHandler}
                                 ></textarea>
-                                <label htmlFor="textarea2" onClick={onChooseLanguage}>{props.languageFrom}</label>
+                                <label htmlFor="textarea2" onClick={onChooseLanguage}>{props.languageFrom} 	&#9660;</label>
                             </div>
                             <div className="input-field col s6">
                                 <textarea
@@ -72,22 +76,27 @@ const Translate = props => {
                                     value={props.wordTranslate}
                                     disabled="disabled"
                                 ></textarea>
-                                <label htmlFor="textarea2" onClick={onChooseLanguageTo}>{props.languageTo}</label>
+                                <label htmlFor="textarea2" onClick={onChooseLanguageTo}>{props.languageTo} 	&#9660;</label>
                             </div>
                         </div>
-
+                        {
+                            props.addMessageSuccess ?
+                            <Message addMessageSuccess={props.addMessageSuccess} />
+                            : null
+                        }
                         <div className="wraper-btn">
                             <button
-                                className="btn waves-effect waves-light"
+                                className="btn-large waves-effect waves-light"
                                 type="submit"
                                 name="action"
                                 onClick={onClickTranslate}
                             >Перевести</button>
 
                             <button
-                                className="btn waves-effect waves-light"
+                                className="btn-large waves-effect waves-light"
                                 type="submit"
                                 name="action"
+                                disabled={props.wordTranslate ? null: "disabled"}
                                 onClick={onClickAdd}
                             >Добавить в словарь</button>
                         </div>
@@ -118,6 +127,7 @@ const mapStateToProps = state => {
         languageToSet: state.translate.languageToSet,
         languageFromKey: state.translate.languageFromKey,
         languageToKey: state.translate.languageToKey,
+        addMessageSuccess: state.translate.addMessageSuccess,
     }
 }
 
@@ -129,6 +139,7 @@ const mapDispatchToProps = dispatch => {
         closeModal: () => dispatch(closeLanguageModal()),
         setLanguage: (languageFrom, languageFromKey) => dispatch(setLanguageFrom(languageFrom, languageFromKey)),
         setLanguageTo: (languageTo, languageToKey) => dispatch(setLanguageTo(languageTo, languageToKey)),
+        clearMessage: () => dispatch(clearMessage())
     }
 }
 

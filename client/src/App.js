@@ -5,9 +5,9 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Navbar } from './components/Navbar/Navbar';
 import { connect } from 'react-redux';
 import { logoutUser, autoLogin } from './redux/actions/auth';
+import { clearPageVoc } from './redux/actions/vocabulary';
 
 function App(props) {
-  
   
   useEffect(() => {
     props.autoLogin()
@@ -17,7 +17,7 @@ function App(props) {
 
   return (
     <Router>    
-      <Navbar isAuthenticated= {props.isAuthenticated} logoutUser={props.logout}/>
+      <Navbar isAuthenticated= {props.isAuthenticated} logoutUser={props.logout} clearPage={props.clearPage}/>
       <div className="container">
         {routes}
       </div>
@@ -33,7 +33,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     autoLogin: () => dispatch(autoLogin()),
-    logout: () => dispatch(logoutUser())
+    logout: () => dispatch(logoutUser()),
+    clearPage: () => dispatch(clearPageVoc()),
   }
 }
 

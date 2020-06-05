@@ -3,7 +3,8 @@ import { WORD_TRANSLATE,
     CHOOSE_LANGUAGE_ON, 
     CLOSE_LANGUAGE_MODAL, 
     SET_LANGUAGE_FROM,
-    SET_LANGUAGE_TO } from "../actions/actionTypes"
+    SET_LANGUAGE_TO,
+    CLEAR_MESSAGE } from "../actions/actionTypes"
 
 const inicialState = {
     word: '',
@@ -12,7 +13,8 @@ const inicialState = {
     languageFromKey: 'en',
     languageTo: 'Русский',
     languageToKey: 'ru',
-    languageToSet: null
+    languageToSet: null,
+    addMessageSuccess: ''
 }
 
 export default function translateReducer(state = inicialState, action) {
@@ -25,7 +27,7 @@ export default function translateReducer(state = inicialState, action) {
             }
         case WORD_TRANSLATE_ADD: 
             return {
-                ...state, word: action.data.text
+                ...state, word: action.data.text, addMessageSuccess: action.data.message
             }
         case CHOOSE_LANGUAGE_ON: 
             return {
@@ -42,6 +44,10 @@ export default function translateReducer(state = inicialState, action) {
         case SET_LANGUAGE_TO: 
             return {
                 ...state, languageTo: action.languageTo, languageToKey: action.languageToKey, languages: null
+            }
+        case CLEAR_MESSAGE: 
+            return {
+                ...state, addMessageSuccess: null
             }
         default:
             return state

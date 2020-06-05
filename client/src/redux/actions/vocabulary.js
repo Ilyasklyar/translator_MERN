@@ -1,4 +1,4 @@
-export const getWordVocabularySuccess = (data) => {
+export const getWordVocabularySuccess = data => {
  
     return {
         type: "GET_WORDS_VOCABULARY",
@@ -7,10 +7,10 @@ export const getWordVocabularySuccess = (data) => {
 }
 
 
-export const getWordVocabulary = token => {
+export const getWordVocabulary = (token, pageNumb, limit) => {
     return (dispatch) => {
-
-        fetch('/api/vocabulary',
+console.log('pageNumb', pageNumb)
+        fetch(`/api/vocabulary?page=${pageNumb}&limit=${limit}`,
         {
             method: 'GET',
             headers: { 
@@ -25,7 +25,7 @@ export const getWordVocabulary = token => {
     }
 }
 
-export const deleteListItem = (id,token) => {
+export const deleteListItem = (id, token, pageNumb, limit) => {
 
     console.log(token)
     return (dispatch) => {
@@ -40,8 +40,15 @@ export const deleteListItem = (id,token) => {
         } )
         .then(response => response.json()) 
 
-     dispatch(getWordVocabulary(token))
+     dispatch(getWordVocabulary(token, pageNumb, limit))
     }
 }
 
+
+export const clearPageVoc = () => {
+ 
+    return {
+        type: "CLEAR_PAGE_VOC"
+    }
+}
 
