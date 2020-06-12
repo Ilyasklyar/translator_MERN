@@ -63,6 +63,7 @@ select {
  textarea.materialize-textarea {
     margin: 25px 0;
     font-size: 18px;
+    height: -webkit-fill-available;
  }
 
  .message {
@@ -71,3 +72,28 @@ select {
     text-align: center;
     margin: 20px 0
 }
+
+@media (min-width: 320px) and (max-width: 767px){
+   .hide-on-med-and-down {
+    display: block !important;
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    } 
+    .row .col.s6 {
+        width: 100%;
+    }
+}
+@media (min-width: 767px) and (max-width: 992px){
+    .hide-on-med-and-down {
+        display: block !important;   
+    } 
+    nav .brand-logo{
+        left:20px;
+        transform: none;
+    }
+    .row .col.s6 {
+        width: 100%;
+    }
+ }
+ 

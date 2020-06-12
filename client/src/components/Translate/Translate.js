@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal, setLanguageFrom, setLanguageTo, clearMessage } from '../../redux/actions/translate'
+import { wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal,
+        setLanguageFrom, setLanguageTo, clearMessage, wordTranslateClearState } from '../../redux/actions/translate'
 import { ModalLang } from '../ModalLang/ModalLang'
 import { Message } from '../Message/Message'
 
@@ -18,6 +19,7 @@ const Translate = props => {
 
     useEffect(() => {
         window.M.updateTextFields()
+        props.wordTranslateClear()
     }, [])
 
 
@@ -139,7 +141,8 @@ const mapDispatchToProps = dispatch => {
         closeModal: () => dispatch(closeLanguageModal()),
         setLanguage: (languageFrom, languageFromKey) => dispatch(setLanguageFrom(languageFrom, languageFromKey)),
         setLanguageTo: (languageTo, languageToKey) => dispatch(setLanguageTo(languageTo, languageToKey)),
-        clearMessage: () => dispatch(clearMessage())
+        clearMessage: () => dispatch(clearMessage()),
+        wordTranslateClear: () => dispatch(wordTranslateClearState())
     }
 }
 

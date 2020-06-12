@@ -183,6 +183,11 @@ export const clearMessage = () => {
     }
 }
 
+export const wordTranslateClearState = () => {
+    return {
+        type: "WORD_TRANSLATE_CLEAR",
+    }
+}
 
 
 
