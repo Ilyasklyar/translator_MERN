@@ -1,14 +1,19 @@
 import React from 'react'
+import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 
 export const TranlateListItem = props => {
 
     return (
-        <ul>
+        <TransitionGroup component='ul' transitionName="example">
             {
-                props.list.map((item, index) => {
-                    return (
-                        <li key={index} >
+                props.list.map((item) => (
+                    <CSSTransition
+                        key={item._id}
+                        classNames={"item"}
+                        timeout={1500}
+                    >
+                        <li>
                             <div className='wrap--list-item'>
                                 <span>{item.textInput}</span>
                                 <span> {item.textTranslate}</span>
@@ -18,12 +23,11 @@ export const TranlateListItem = props => {
                                 </button>
                             </div>
                         </li>
-                    )
-                }
+                    </CSSTransition>
+                )
                 )
             }
-        </ul>
-
+        </TransitionGroup>
     )
 }
 

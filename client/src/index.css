@@ -34,6 +34,7 @@
     font-weight: 700;
     text-align: center;
 }
+
 select {
     display: block;
 }
@@ -43,15 +44,18 @@ select {
     top: 100px;
     z-index: 999;
 }
-.modal ul { 
+
+.modal ul {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.modal ul li { 
+
+.modal ul li {
     margin: 10px;
 }
-.modal ul li span { 
+
+.modal ul li span {
     cursor: pointer;
 }
 
@@ -59,20 +63,21 @@ select {
 .input-field>label {
     font-size: 1.5rem;
     cursor: pointer;
- }
- textarea.materialize-textarea {
+}
+
+textarea.materialize-textarea {
     margin: 26px 0;
     font-size: 18px;
- }
+}
 
- .message {
+.message {
     color: #26a69a;
     font-weight: 700;
     text-align: center;
     margin: 20px 0
 }
 
- .textTranslate {
+.textTranslate {
     margin: 25px 0;
     font-size: 18px;
     line-height: normal;
@@ -83,7 +88,8 @@ select {
     box-sizing: border-box;
     color: #9e9e9e;
     border-bottom: 1px solid #9e9e9e;
- }
+}
+
 .textTitileTranslate {
     position: absolute;
     transform: translateY(-14px) scale(0.8);
@@ -96,36 +102,64 @@ select {
 }
 
 
-@media (min-width: 320px) and (max-width: 767px){
+@media (min-width: 320px) and (max-width: 767px) {
     .hide-on-med-and-down {
-     display: block !important;
-     position: absolute;
-     top: 22px;
-     left: 20px;
-     } 
-     .row .col.s6 {
-         width: 100%;
-     }
-     
- }
- @media (min-width: 767px) and (max-width: 992px){
-     .hide-on-med-and-down {
-         display: block !important;   
-     } 
-     nav .brand-logo{
-         left:20px;
-         transform: none;
-     }
-     .row .col.s6 {
-         width: 100%;
-     }
-  }
- 
-  .preloader-wrapper {
-      display: block;
-      margin: 0 auto;
-      position: absolute;
-      position:absolute; 
-      left: 48%; 
-      top: 45%
-  }
+        display: block !important;
+        position: absolute;
+        top: 22px;
+        left: 20px;
+    }
+
+    .row .col.s6 {
+        width: 100%;
+    }
+
+}
+
+@media (min-width: 767px) and (max-width: 992px) {
+    .hide-on-med-and-down {
+        display: block !important;
+    }
+
+    nav .brand-logo {
+        left: 20px;
+        transform: none;
+    }
+
+    .row .col.s6 {
+        width: 100%;
+    }
+}
+
+.preloader-wrapper {
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    position: absolute;
+    left: 48%;
+    top: 45%
+}
+
+.item-exit-active {
+    animation: item 1.5s ease-out forwards;
+}
+
+.item-enter-active {
+    animation: item 1.5s ease-in alternate-reverse;
+}
+
+@keyframes item {
+    0% {
+        transform: translateX(0);
+    }
+
+    30% {
+        opacity: .7;
+        transform: translateX(30px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-200px);
+    }
+}

@@ -10,8 +10,7 @@ export const getWordVocabularySuccess = data => {
 export const getWordVocabulary = (token, pageNumb, limit) => {
     return (dispatch) => {
 
-        fetch(`/api/vocabulary?page=${pageNumb}&limit=${limit}`,
-            {
+        fetch(`/api/vocabulary?page=${pageNumb}&limit=${limit}`, {
                 method: 'GET',
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -28,10 +27,11 @@ export const getWordVocabulary = (token, pageNumb, limit) => {
 export const deleteListItem = (id, token, pageNumb, limit) => {
 
     return (dispatch) => {
-        fetch('/api/vocabulary/delete',
-            {
+        fetch('/api/vocabulary/delete', {
                 method: 'POST',
-                body: JSON.stringify({ id }),
+                body: JSON.stringify({
+                    id
+                }),
                 headers: {
                     Authorization: `Bearer ${token}`,
                     'Content-Type': 'application/json'
@@ -48,11 +48,5 @@ export const clearPageVoc = () => {
 
     return {
         type: "CLEAR_PAGE_VOC"
-    }
-}
-
-export const loaderGetVoc = () => {
-    return {
-        type: "LOADER_GET_VOC"
     }
 }

@@ -105,7 +105,7 @@ const Translate = props => {
                                 className="btn-large waves-effect waves-light"
                                 type="submit"
                                 name="action"
-                                disabled={props.wordTranslate ? null : "disabled"}
+                                disabled={props.wordTranslate && text.text !== '' ? null : "disabled"}
                                 onClick={onClickAdd}
                             >Добавить в словарь</button>
                         </div>

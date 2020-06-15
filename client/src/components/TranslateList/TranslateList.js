@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { TranlateListItem } from '../TranslateListItem/TranslateListItem'
-import { getWordVocabulary, deleteListItem, loaderGetVoc } from '../../redux/actions/vocabulary';
-import { Loader } from '../Loader/Loader';
+import { getWordVocabulary, deleteListItem } from '../../redux/actions/vocabulary';
 
 
 const TranlateList = props => {
@@ -11,34 +10,27 @@ const TranlateList = props => {
     let tokenEff = props.token
     let pageEff = props.page
     let limitEff = props.limit
-    const loaderTo = props.loaderTo
 
     useEffect(
         () => {
-            loaderTo()
             getTextEff(tokenEff, pageEff, limitEff)
         },
-        [getTextEff, tokenEff, pageEff, limitEff, loaderTo]
+        [getTextEff, tokenEff, pageEff, limitEff]
     );
 
     const onChangePage = (pageNumb) => {
-        loaderTo()
         props.getText(props.token, pageNumb, props.limit)
     }
 
     return (
         <div>
             {
-                props.loader ?
-                    <Loader />
-                    :
-
-                    <TranlateListItem list={props.list}
-                        deleteItem={props.deleteItem}
-                        token={props.token}
-                        page={props.page}
-                        limit={props.limit}
-                    />}
+                <TranlateListItem list={props.list}
+                    deleteItem={props.deleteItem}
+                    token={props.token}
+                    page={props.page}
+                    limit={props.limit}
+                />}
             <ul className="pagination">
 
                 {
@@ -87,7 +79,6 @@ const mapStateToProps = state => {
         previousPage: state.vocabulary.previousPage,
         countItem: state.vocabulary.countItem,
         limit: state.vocabulary.limit,
-        loader: state.translate.loader,
     }
 }
 
@@ -95,7 +86,6 @@ const mapDispatchToProps = dispatch => {
     return {
         getText: (token, pageNumb, limit) => dispatch(getWordVocabulary(token, pageNumb, limit)),
         deleteItem: (id, token, pageNumb, limit) => dispatch(deleteListItem(id, token, pageNumb, limit)),
-        loaderTo: () => dispatch(loaderGetVoc())
     }
 }
 
