@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
-import { wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal,
-        setLanguageFrom, setLanguageTo, clearMessage, wordTranslateClearState } from '../../redux/actions/translate'
+import {
+    wordTranslate, wordTranslateAdd, chooseLanguageApi, closeLanguageModal,
+    setLanguageFrom, setLanguageTo, clearMessage, wordTranslateClearState, loaderGet
+} from '../../redux/actions/translate'
 import { ModalLang } from '../ModalLang/ModalLang'
 import { Message } from '../Message/Message'
+import { Loader } from '../Loader/Loader'
 
 
 
@@ -17,24 +20,28 @@ const Translate = props => {
         })
     }
 
+    const wordTranslateClear = props.wordTranslateClear
+
     useEffect(() => {
         window.M.updateTextFields()
-        props.wordTranslateClear()
-    }, [])
+        wordTranslateClear()
+    }, [wordTranslateClear])
 
 
     const onClickTranslate = (event) => {
         event.preventDefault();
         let word = Object.values(text)
+        props.loaderTo()
         props.translate(word, props.languageFromKey, props.languageToKey)
     }
 
     const onClickAdd = (event) => {
         event.preventDefault()
+        props.loaderTo()
         props.addToVocabulary(Object.values(text).join(''), ...props.wordTranslate, props.token)
-        setTimeout (() => {
+        setTimeout(() => {
             props.clearMessage()
-        },5000)
+        }, 5000)
     }
 
     let languageToSet
@@ -48,7 +55,7 @@ const Translate = props => {
         languageToSet = true
         props.getLanguage(languageToSet)
     }
-
+  
     return (
         <>
             <div>
@@ -69,22 +76,22 @@ const Translate = props => {
                                 <label htmlFor="textarea2" onClick={onChooseLanguage}>{props.languageFrom} 	&#9660;</label>
                             </div>
                             <div className="input-field col s6">
-                                <textarea
-                                    id="textarea2"
-                                    className="materialize-textarea"
-                                    data-length="520"
-                                    name="text2"
-                                    placeholder="Перевод"
-                                    value={props.wordTranslate}
-                                    disabled="disabled"
-                                ></textarea>
-                                <label htmlFor="textarea2" onClick={onChooseLanguageTo}>{props.languageTo} 	&#9660;</label>
+                                <div>
+                                    <span className="textTitileTranslate" onClick={onChooseLanguageTo}>{props.languageTo} 	&#9660;</span>
+                                    <div className="textTranslate">
+                                        {
+                                            props.wordTranslate ?
+                                                <span>{props.wordTranslate}</span>
+                                                : <span>Перевод</span>
+                                        }
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         {
                             props.addMessageSuccess ?
-                            <Message addMessageSuccess={props.addMessageSuccess} />
-                            : null
+                                <Message addMessageSuccess={props.addMessageSuccess} />
+                                : null
                         }
                         <div className="wraper-btn">
                             <button
@@ -98,13 +105,18 @@ const Translate = props => {
                                 className="btn-large waves-effect waves-light"
                                 type="submit"
                                 name="action"
-                                disabled={props.wordTranslate ? null: "disabled"}
+                                disabled={props.wordTranslate ? null : "disabled"}
                                 onClick={onClickAdd}
                             >Добавить в словарь</button>
                         </div>
                     </form>
                 </div>
             </div>
+            {
+                props.loader ? 
+                <Loader />
+                : null
+            }
             {
                 props.languages ?
                     <ModalLang
@@ -130,6 +142,7 @@ const mapStateToProps = state => {
         languageFromKey: state.translate.languageFromKey,
         languageToKey: state.translate.languageToKey,
         addMessageSuccess: state.translate.addMessageSuccess,
+        loader: state.translate.loader,
     }
 }
 
@@ -142,7 +155,8 @@ const mapDispatchToProps = dispatch => {
         setLanguage: (languageFrom, languageFromKey) => dispatch(setLanguageFrom(languageFrom, languageFromKey)),
         setLanguageTo: (languageTo, languageToKey) => dispatch(setLanguageTo(languageTo, languageToKey)),
         clearMessage: () => dispatch(clearMessage()),
-        wordTranslateClear: () => dispatch(wordTranslateClearState())
+        wordTranslateClear: () => dispatch(wordTranslateClearState()),
+        loaderTo: () => dispatch(loaderGet())
     }
 }
 

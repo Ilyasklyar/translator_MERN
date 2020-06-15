@@ -24,7 +24,7 @@ export const wordTranslate =  (word, languageFromKey, languageToKey) => {
     }
 }
 
-export const wordTranslateAdd =  (text,wordTranslate,token) => {
+export const wordTranslateAdd =  (text, wordTranslate, token) => {
     return (dispatch) => {
         fetch('/api/vocabulary/add',
         {
@@ -189,5 +189,10 @@ export const wordTranslateClearState = () => {
     }
 }
 
+export const loaderGet = () => {
+    return {
+        type: "TRANSLATE_START",
+    }
+}
 
 

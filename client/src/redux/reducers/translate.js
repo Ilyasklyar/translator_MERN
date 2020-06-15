@@ -5,7 +5,8 @@ import { WORD_TRANSLATE,
     SET_LANGUAGE_FROM,
     SET_LANGUAGE_TO,
     CLEAR_MESSAGE,
-    WORD_TRANSLATE_CLEAR } from "../actions/actionTypes"
+    WORD_TRANSLATE_CLEAR,
+    TRANSLATE_START } from "../actions/actionTypes"
 
 const inicialState = {
     word: '',
@@ -15,20 +16,25 @@ const inicialState = {
     languageTo: 'Русский',
     languageToKey: 'ru',
     languageToSet: null,
-    addMessageSuccess: ''
+    addMessageSuccess: '',
+    loader: false
 }
 
 export default function translateReducer(state = inicialState, action) {
     
     switch(action.type) {
-       
+
+        case TRANSLATE_START: 
+            return {
+                ...state, loader: true
+            }
         case WORD_TRANSLATE: 
             return {
-                ...state, word: action.data.text
+                ...state, loader: false, word: action.data.text
             }
         case WORD_TRANSLATE_ADD: 
             return {
-                ...state, word: action.data.text, addMessageSuccess: action.data.message
+                ...state, loader: false, addMessageSuccess: action.data.message
             }
         case CHOOSE_LANGUAGE_ON: 
             return {
