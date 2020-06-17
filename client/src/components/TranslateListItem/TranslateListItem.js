@@ -17,7 +17,7 @@ export const TranlateListItem = props => {
                             <div className='wrap--list-item'>
                                 <span>{item.textInput}</span>
                                 <span> {item.textTranslate}</span>
-                                <button href="#" className="btn-floating btn-large waves-effect waves-light red"
+                                <button href="#" className="btn-floating btn-large waves-effect waves-light light-blue darken-1"
                                     onClick={() => props.deleteItem(item._id, props.token, props.page, props.limit)}>
                                     <i className="material-icons">&times;</i>
                                 </button>

@@ -43,7 +43,7 @@ export const ModalLang = props => {
 
                 </div>
                 <div className="modal-footer">
-                    <a href="#!" className="modal-close waves-effect waves-green btn-flat" onClick={onCloseModal}>Закрыть</a>
+                    <a href="#!" className="modal-close waves-effect waves-green btn light-blue darken-1" onClick={onCloseModal}>Закрыть</a>
                 </div>
             </div>
         )

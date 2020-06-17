@@ -95,14 +95,14 @@ const Translate = props => {
                         }
                         <div className="wraper-btn">
                             <button
-                                className="btn-large waves-effect waves-light"
+                                className="btn-large waves-effect waves-light light-blue darken-1"
                                 type="submit"
                                 name="action"
                                 onClick={onClickTranslate}
                             >Перевести</button>
 
                             <button
-                                className="btn-large waves-effect waves-light"
+                                className="btn-large waves-effect waves-light light-blue darken-1"
                                 type="submit"
                                 name="action"
                                 disabled={props.wordTranslate && text.text !== '' ? null : "disabled"}

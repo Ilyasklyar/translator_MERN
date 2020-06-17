@@ -27,19 +27,6 @@ const Auth = props => {
       <div className="row">
         <div className="input-field col s6 center">
           <input
-            id="password"
-            type="password"
-            name="password"
-            className="validate"
-            value={form.password}
-            onChange={onChangeHandler}
-          />
-          <label htmlFor="password">Password</label>
-        </div>
-      </div>
-      <div className="row">
-        <div className="input-field col s6 center">
-          <input
             id="email"
             type="email"
             name="email"
@@ -49,14 +36,28 @@ const Auth = props => {
           <label htmlFor="email">Email</label>
         </div>
       </div>
-      { props.message ?
+      <div className="row">
+        <div className="input-field col s6 center">
+          <input
+            id="password"
+            type="password"
+            name="password"
+            className="validate"
+            value={form.password}
+            onChange={onChangeHandler}
+          />
+          <label htmlFor="password">Пароль</label>
+        </div>
+      </div>
+
+      {props.message ?
         <Message message={props.message} />
-        : null }
+        : null}
       <div className="row">
         <div className="col s6 center">
           <div className="wraper-btn">
-            <button className="btn-large waves-effect waves-light" type="submit" name="action" onClick={onClickLogin} >Войти</button>
-            <button className="btn-large waves-effect waves-light" type="submit" name="action" onClick={onClickRegister}>Зарегистрироваться</button>
+            <button className="btn-large waves-effect waves-light light-blue darken-1" type="submit" name="action" onClick={onClickLogin} >Войти</button>
+            <button className="btn-large waves-effect waves-light light-blue darken-1" type="submit" name="action" onClick={onClickRegister}>Зарегистрироваться</button>
           </div>
         </div>
       </div>

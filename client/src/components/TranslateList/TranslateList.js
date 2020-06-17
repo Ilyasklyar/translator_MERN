@@ -10,6 +10,10 @@ const TranlateList = props => {
     let tokenEff = props.token
     let pageEff = props.page
     let limitEff = props.limit
+     
+    if (tokenEff === null) {
+                tokenEff = localStorage.getItem('token')
+            }
 
     useEffect(
         () => {
@@ -47,10 +51,11 @@ const TranlateList = props => {
                             </a>
                         </li>
                 }
+                
+                <li className="active light-blue darken-1"><a href="#!">{props.page}</a></li>
 
-                <li className="active"><a href="#!">{props.page}</a></li>
                 {
-                    (props.page === Math.ceil((props.countItem / props.limit))) ?
+                    (props.page === Math.ceil((props.countItem / props.limit)) || props.list.length === 0) ?
                         <li className="disabled">
                             <a href="#!">
                                 <i className="material-icons">&raquo;</i>
